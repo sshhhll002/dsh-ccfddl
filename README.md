@@ -26,7 +26,7 @@ dsh plugin --profile web add github:sshhhll002/dsh-ccfddl
 
 `dsh plugin` 把包作为 profile 依赖安装(peer 依赖 `@deepseek-ai/cordis`、`@deepseek-ai/dsh-typert-protocol`、`react` 均发布在 npm),并读取包内随附的 `cordis.patch.yml` 自动挂载组件行。之后重启 `dsh web`,刷新页面即可。
 
-手动安装的等价方式:把本仓库软链到 `profile/node_modules/@deepseek-ai/dsh-ccfddl`(仓库已提交预构建产物 `lib/`,无需先构建),并在 profile 的 `cordis.patch.yml` 中插入:
+手动安装的等价方式:把本仓库放入 DeepSeek Harness 源码工作区的 `packages/extensions/ccfddl`(依赖由工作区提供,仓库已提交预构建产物 `lib/`,无需构建),再把 `$DSH_HOME/profiles/node_modules/@deepseek-ai/dsh-ccfddl`(`$DSH_HOME` 默认为 `~/.dsh`)软链指向该目录,并在 profile 的 `cordis.patch.yml` 中插入:
 
 ```yaml
 - insert:
@@ -34,7 +34,7 @@ dsh plugin --profile web add github:sshhhll002/dsh-ccfddl
       name: '@deepseek-ai/dsh-ccfddl'
 ```
 
-两种方式二选一,不要同时使用,否则组件行会被插入两次。
+重启 `dsh web` 后生效。两种方式二选一,不要同时使用,否则同一组件行会被插入两次。
 
 ## 构建与测试
 
