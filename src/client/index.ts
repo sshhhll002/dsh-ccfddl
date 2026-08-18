@@ -13,7 +13,7 @@ import type { Row, Settings } from './data.ts'
 
 export const inject = ['slots']
 
-const VERSION = '1.5.0'
+const VERSION = '1.0.0'
 const STORE_KEY = 'ccfddl.settings.v1'
 
 /** Typert Remote 失败分支(仅取展示所需字段)。 */

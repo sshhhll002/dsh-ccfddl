@@ -1,7 +1,7 @@
 {
   "name": "@deepseek-ai/dsh-ccfddl",
   "description": "CCF 会议截稿倒计时侧栏组件:数据由服务器进程拉取 ccfddl.com,浏览器经连接 API 获取;localStorage 持久化设置,红绿灯紧急度。",
-  "version": "1.5.0",
+  "version": "1.0.0",
   "publishConfig": {
     "access": "public"
   },
