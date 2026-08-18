@@ -1,5 +1,11 @@
 # dsh-ccfddl
 
+<p align="center">
+  <img alt="GitHub release" src="https://img.shields.io/github/v/release/sshhhll002/dsh-ccfddl">
+  <img alt="License" src="https://img.shields.io/github/license/sshhhll002/dsh-ccfddl">
+  <img alt="dsh-plugin" src="https://img.shields.io/badge/available-2563eb?label=dsh-plugin">
+</p>
+
 CCF 会议截稿倒计时侧栏插件,运行在 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 的 Web 界面(`dsh web`)中。
 
 ## 功能
@@ -14,16 +20,21 @@ CCF 会议截稿倒计时侧栏插件,运行在 [DeepSeek Harness](https://githu
 
 前提:已安装 DeepSeek Harness 并能运行 `dsh web`,宿主进程为 Node.js 18 或更高版本。
 
-1. 让 profile 能解析包名 `@deepseek-ai/dsh-ccfddl`,两种等价方式:
-   - 在 profile 的依赖中加入本仓库(例如 pnpm 的 git 依赖),其 peer 依赖 `@deepseek-ai/cordis`、`@deepseek-ai/dsh-typert-protocol`、`react` 均发布在 npm;
-   - 或直接把本仓库软链到 `profile/node_modules/@deepseek-ai/dsh-ccfddl`。仓库已提交预构建产物(`lib/`),无需先构建。
-2. 在 profile 的 `cordis.patch.yml` 中插入一行(行 id 可自定义,保持唯一即可):
-   ```yaml
-   - insert:
-       - id: ccfddl
-         name: '@deepseek-ai/dsh-ccfddl'
-   ```
-3. 重启 `dsh web`,刷新页面。
+```sh
+dsh plugin --profile web add github:sshhhll002/dsh-ccfddl
+```
+
+`dsh plugin` 把包作为 profile 依赖安装(peer 依赖 `@deepseek-ai/cordis`、`@deepseek-ai/dsh-typert-protocol`、`react` 均发布在 npm),并读取包内随附的 `cordis.patch.yml` 自动挂载组件行。之后重启 `dsh web`,刷新页面即可。
+
+手动安装的等价方式:把本仓库软链到 `profile/node_modules/@deepseek-ai/dsh-ccfddl`(仓库已提交预构建产物 `lib/`,无需先构建),并在 profile 的 `cordis.patch.yml` 中插入:
+
+```yaml
+- insert:
+    - id: ccfddl
+      name: '@deepseek-ai/dsh-ccfddl'
+```
+
+两种方式二选一,不要同时使用,否则组件行会被插入两次。
 
 ## 构建与测试
 

@@ -1,0 +1,5 @@
+# 本包随附的 profile 补丁:`dsh plugin add` 安装后由启动器作为
+# bundle layer 应用(插入侧栏组件行)。行 id 可改,但需保持唯一。
+- insert:
+    - id: ccfddl
+      name: '@deepseek-ai/dsh-ccfddl'
